@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LocalidadComponent } from './localidad/localidad.component.js';
+import { LocalidadComponent } from './core/localidad/localidad.component.js';
 
 @Component({
   selector: 'app-root',
