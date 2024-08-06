@@ -19,6 +19,10 @@ export class LocalidadComponent implements OnInit {
     this.getData();
   } 
 
+  ngOnChange(): void {
+    this.getData();
+  }
+
   getData() {
     this.httpClient.get<ApiResponse>('http://localhost:3000/api/localidades').subscribe({
       next: (response: ApiResponse) => {
