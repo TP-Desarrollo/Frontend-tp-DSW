@@ -1,17 +1,16 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 import { ApiResponse } from '../models/interfaces';
-
+import { inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-localidad',
+  selector: 'app-vehiculos',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './localidad.component.html',
-  styleUrl: './localidad.component.css'
+  templateUrl: './vehiculos.component.html',
+  styleUrl: './vehiculos.component.css'
 })
-export class LocalidadComponent implements OnInit {
-
+export class VehiculosComponent {
   httpClient = inject(HttpClient);
   data: ApiResponse | undefined;
 
@@ -24,7 +23,7 @@ export class LocalidadComponent implements OnInit {
   }
 
   getData() {
-    this.httpClient.get<ApiResponse>('http://localhost:3000/api/localidades').subscribe({
+    this.httpClient.get<ApiResponse>('http://localhost:3000/api/vehiculos').subscribe({
       next: (response: ApiResponse) => {
         console.log(response);
         this.data = response;
