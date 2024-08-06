@@ -5,6 +5,6 @@
     ID: {{ localidad.id }} //
     Nombre: {{ localidad.nombre }} //
     Provincia: {{ localidad.provincia }} //
-    Clientes: {{ localidad.clientes.length }} <!-- Puse length para ver si me devuelve algo, habria que formatear esto para que muestre bien la info del cliente -->
+    Clientes: <div *ngFor="let cliente of localidad.clientes">{{ cliente.nombre }} {{cliente.apellido}}</div> <!-- Puse length para ver si me devuelve algo, habria que formatear esto para que muestre bien la info del cliente -->
   </div>
 </div>
