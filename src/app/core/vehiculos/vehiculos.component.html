@@ -1,0 +1,12 @@
+<h2>Listado vehiculos</h2>
+
+<div *ngIf="data && data.data">
+  <div class="lista" *ngFor="let vehiculo of data.data">
+    ID: {{ vehiculo.id }} //
+    Patente: {{ vehiculo.patente }} //
+    Marca: {{ vehiculo.marca }} //
+    Modelo: {{ vehiculo.modelo }} //
+    tipoVehiculo: {{ vehiculo.tipoVehiculo }} <!-- Nose porque devuelve un [object object]--> //
+    Alquileres: <div style="margin-left: 750px;" *ngFor="let alquiler of vehiculo.alquileres">Id: {{ alquiler.id }} Id Cliente:{{alquiler.cliente}}</div>
+  </div>
+</div>
