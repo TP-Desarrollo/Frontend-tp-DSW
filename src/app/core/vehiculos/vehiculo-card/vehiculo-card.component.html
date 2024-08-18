@@ -1,0 +1,20 @@
+
+<div *ngIf="vehiculoData && vehiculoData.data">
+  <div *ngFor="let vehiculo of vehiculoData.data">
+    <div class="vehicle-card">
+      <div class="vehicle-image">
+        <img [src]="vehiculo.imageUrl" alt="Imagen del Vehículo">
+      </div>
+      <div class="vehicle-info">
+        <p><strong>Marca:</strong> {{ vehiculo.marca }}</p>
+        <p><strong>Modelo:</strong> {{ vehiculo.modelo }}</p>
+        <p><strong>Patente:</strong> {{ vehiculo.patente }}</p>
+      </div>
+      <div class="vehicle-status">
+        <p><strong>Estado:</strong> {{ vehiculo.estado }}</p>
+        <button (click)="editarVehiculo(vehiculo)">Editar</button>
+        <button (click)="eliminarVehiculo(vehiculo)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
