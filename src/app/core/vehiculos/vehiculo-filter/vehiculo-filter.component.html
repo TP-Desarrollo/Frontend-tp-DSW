@@ -1,0 +1,7 @@
+<div class="vehiculo-filter">
+  <label for="tipoVehiculo">Filtrar por Tipo de Vehículo:</label>
+  <select (change)="onFilterChange($event)">
+    <option value="Todos">Todos</option>
+    <option *ngFor="let tipo of tiposVehiculo" [value]="tipo">{{ tipo }}</option>
+  </select>
+</div>

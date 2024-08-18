@@ -50,6 +50,7 @@ export interface Vehiculo {
   patente: string;
   marca: string;
   modelo: string;
+  estado: string;
   tipoVehiculo: TipoVehiculo;
   alquileres: Alquiler[];
 }
