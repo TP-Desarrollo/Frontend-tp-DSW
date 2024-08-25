@@ -51,6 +51,7 @@ export interface Vehicle {
   brand: string;
   model: string;
   status: string;
+  imageUrl: string;
   vehicleType: VehicleType;
   rentals: Rental[];
 }

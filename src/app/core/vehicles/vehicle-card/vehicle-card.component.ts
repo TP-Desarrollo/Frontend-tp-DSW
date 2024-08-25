@@ -15,6 +15,7 @@ export class VehicleCardComponent {
   private httpClient = inject(HttpClient);
   vehicleData: ApiResponse | undefined;
   filteredVehicles: Vehicle[] = [];
+  imgPath = 'http://localhost:3000/uploads/';
 
   ngOnInit(): void {
     this.getData();

@@ -1,36 +1,33 @@
 .vehicle-card {
-  display: flex;
   border: 2px solid black;
   padding: 10px;
+  width: 200px;
+  /* Ajusta el ancho de la tarjeta según sea necesario */
+  text-align: center;
+  /* Centra el contenido */
+  margin: 0 auto 10px;
+  /* Centra la tarjeta y agrega un margen inferior */
+}
+
+.vehicle-image {
+  border: 2px solid black;
+  width: 100%;
+  padding: 10px;
+  height: 150px;
+  /* Ajusta la altura de la imagen según sea necesario */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 10px;
-  width: 60%;
-  margin: 0 auto;
+  /* Añade un margen inferior para separación */
 }
 
 .vehicle-image img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-.vehicle-info {
-  margin-left: 20px;
-  flex: 1;
-}
-
-.vehicle-status {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-left: auto;
-  gap: 1vw;
-}
-
-.vehicle-status button {
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.vehicle-status p {
-  margin: 0;
+.vehicle-details {
+  text-align: center;
 }
