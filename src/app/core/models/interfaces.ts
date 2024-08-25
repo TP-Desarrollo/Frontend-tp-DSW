@@ -1,61 +1,61 @@
-export interface Alquiler {
+export interface Rental {
   id: number;
-  cliente: Cliente;
-  empleado: Empleado;
-  vehiculo: Vehiculo;
-  fechaInicio: Date;
-  fechaFin: Date;
-  estado: string;
-  precio: number;
+  customer: Customer;
+  employee: Employee;
+  vehicle: Vehicle;
+  startDate: Date;
+  endDate: Date;
+  state: string;
+  price: number;
 }
 
-export interface Cliente{
+export interface Customer{
     id: number,
     dni: number, 
-    nombre: string, 
+    firstName: string, 
     email: string,
-    clave: string, 
-    direccion: string,
-    telefono: string,
-    apellido: string,
-    localidad: Localidad,
-    alquileres: Alquiler[],
+    password: string, 
+    adress: string,
+    phone: string,
+    lastName: string,
+    locality: Locality,
+    rentals: Rental[],
 }
 
-export interface Empleado{
+export interface Employee{
     id: number,
     dni: number, 
-    nombre: string, 
+    fullName: string, 
     email: string,
-    clave: string, 
-    alquileres: Alquiler[],
+    password: string, 
+    rentals: Rental[],
 }
 
-export interface Localidad {
+export interface Locality {
   id: number;
-  nombre: string;
-  provincia: string;
-  clientes: Cliente[];
+  name: string;
+  province: string;
+  customers: Customer[];
 } 
 
-export interface TipoVehiculo {
+export interface VehicleType {
   id: number;
-  tipo: string;
-  descripcion: string;
-  vehiculos: Vehiculo[];
+  type: string;
+  description: string;
+  vehicles: Vehicle[];
 }
 
-export interface Vehiculo {
+export interface Vehicle {
   id: number;
-  patente: string;
-  marca: string;
-  modelo: string;
-  estado: string;
-  tipoVehiculo: TipoVehiculo;
-  alquileres: Alquiler[];
+  licensePlate: string;
+  brand: string;
+  model: string;
+  status: string;
+  vehicleType: VehicleType;
+  rentals: Rental[];
 }
 
 export interface ApiResponse {
   message: string;
-  data: any;  // Revisar esto
+  data: any; 
 }

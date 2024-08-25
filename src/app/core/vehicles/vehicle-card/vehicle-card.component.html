@@ -1,0 +1,24 @@
+<app-vehiculo-filter 
+  [vehicles]="vehicleData?.data || []"
+  (filterChanged)="onFilterChange($event)">
+</app-vehiculo-filter>
+
+<div *ngIf="filteredVehicles.length > 0">
+  <div *ngFor="let vehicle of filteredVehicles">
+    <div class="vehicle-card">
+      <div class="vehicle-image">
+        <!--  <img [src]="vehiculo.imageUrl" alt="Imagen del Vehículo">-->
+      </div>
+      <div class="vehicle-info">
+        <p><strong>Brand:</strong> {{ vehicle.brand }}</p>
+        <p><strong>Model:</strong> {{ vehicle.model }}</p>
+        <p><strong>License Plate:</strong> {{ vehicle.licensePlate }}</p>
+      </div>
+      <div class="vehicle-status">
+        <p><strong>Status:</strong> {{ vehicle.status }}</p>
+        <button (click)="editVehicle(vehicle)">Edit</button>
+        <button (click)="deleteVehicle(vehicle)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
