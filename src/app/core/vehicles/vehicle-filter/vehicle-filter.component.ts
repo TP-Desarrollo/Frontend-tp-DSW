@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Vehicle } from '../../models/interfaces';
 
 @Component({
-  selector: 'app-vehiculo-filter',
+  selector: 'app-vehicle-filter',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './vehicle-filter.component.html',
@@ -11,7 +11,7 @@ import { Vehicle } from '../../models/interfaces';
 })
 export class VehicleFilterComponent {
   @Input() vehicles: Vehicle[] = [];
-  @Output() filterChanged: EventEmitter<string> = new EventEmitter<string>();
+  @Output() filterChange = new EventEmitter<string>();
 
   vehicleTypes: string[] = [];
 
@@ -28,6 +28,6 @@ export class VehicleFilterComponent {
 
   onFilterChange(event: Event) {
     const selectedType = (event.target as HTMLSelectElement).value;
-    this.filterChanged.emit(selectedType);
+    this.filterChange.emit(selectedType);
   }
 }

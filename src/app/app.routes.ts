@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { VehicleCardComponent } from './core/vehicles/vehicle-card/vehicle-card.component.js';
+import { VehicleTemplateComponent } from './core/vehicles/vehicle-template/vehicle-template.component.js';
 
 
 export const routes: Routes = [
-  { path:'vehicles', component: VehicleCardComponent}  
+  { path:'vehicles', component: VehicleTemplateComponent}  
 ];

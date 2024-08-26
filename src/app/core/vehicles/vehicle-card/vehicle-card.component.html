@@ -1,9 +1,3 @@
-<div class="filter-and-add">
-  <app-vehiculo-filter [vehicles]="vehicleData?.data || []"(filterChanged)="onFilterChange($event)"></app-vehiculo-filter>
-  <app-vehicle-add (vehicleAdded)="onVehicleAdded()"></app-vehicle-add>
-</div>
-
-
 <div *ngIf="filteredVehicles.length > 0">
   <div class="vehicle-container">
     <div *ngFor="let vehicle of filteredVehicles" class="vehicle-card">

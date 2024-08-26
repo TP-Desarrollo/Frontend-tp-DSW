@@ -2,13 +2,11 @@ import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiResponse, Vehicle } from '../../models/interfaces';
 import { CommonModule } from '@angular/common';
-import { VehicleFilterComponent } from '../vehicle-filter/vehicle-filter.component.js';
-import { VehicleAddComponent } from '../vehicle-add/vehicle-add.component.js';
 
 @Component({
-  selector: 'app-vehiculo-card',
+  selector: 'app-vehicle-card',
   standalone: true,
-  imports: [CommonModule, VehicleFilterComponent, VehicleAddComponent],
+  imports: [CommonModule],
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'
 })
