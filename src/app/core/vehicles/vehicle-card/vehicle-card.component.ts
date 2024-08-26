@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiResponse, Vehicle } from '../../models/interfaces';
 import { CommonModule } from '@angular/common';
+import { VehicleService } from '../../../vehicle.service';
+
 
 @Component({
   selector: 'app-vehicle-card',
@@ -11,24 +13,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './vehicle-card.component.css'
 })
 export class VehicleCardComponent {
-  private httpClient = inject(HttpClient);
+  
   vehicleData: ApiResponse | undefined;
   filteredVehicles: Vehicle[] = [];
   imgPath = 'http://localhost:3000/uploads/';
+
+  constructor(private vehicleService: VehicleService) {}
 
   ngOnInit(): void {
     this.getData();
   } 
 
   getData() {
-    this.httpClient.get<ApiResponse>('http://localhost:3000/vehicles').subscribe({
+    this.vehicleService.getVehicles().subscribe({
       next: (response: ApiResponse) => {
         console.log(response);
         this.vehicleData = response;
         this.filteredVehicles = this.vehicleData.data;
       },
       error: (error) => {
-        console.error('Error fetching data:', error);
+        console.log('Error fetching data:', error);
       }
     });
   }
