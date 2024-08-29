@@ -7,8 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { ApiResponse, Vehicle, VehicleType } from '../../models/interfaces';
-import { VehicleService } from '../../../vehicle.service';
-import { VehicleTypeService } from '../../../vehicle-type.service';
+import { VehicleService } from '../../../services/vehicle.service';
+import { VehicleTypeService } from '../../../services/vehicle-type.service';
 
 @Component({
   selector: 'app-vehicle-add-dialog',
@@ -42,13 +42,13 @@ export class VehicleAddDialogComponent implements OnInit {
 
   loadVehicleTypes() {
     this.vehicleTypeService.getVehicleTypes().subscribe({
-      next: (response) => {
-        console.log('API Response:', response); // Verificar la respuesta completa de la API
-        this.vehicleTypes = response.data; // Asignar directamente como un array de VehicleType
-        console.log('Vehicle Types:', this.vehicleTypes); // Verificar los tipos de vehículos después de mapear
+      next: (response: ApiResponse) => {
+        console.log('API Response:', response); 
+        this.vehicleTypes = response.data; 
+        console.log('Vehicle Types:', this.vehicleTypes); 
       },
       error: (error) => {
-        console.error('Error fetching vehicle types:', error); // Manejo de errores
+        console.error('Error fetching vehicle types:', error);
       }
     });
   }

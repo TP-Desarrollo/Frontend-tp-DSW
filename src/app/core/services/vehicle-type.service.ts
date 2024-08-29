@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiResponse, VehicleType } from './core/models/interfaces';
+import { ApiResponse, VehicleType } from '../components/models/interfaces';
 import { map } from 'rxjs/operators';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { VehicleTemplateComponent } from './core/vehicles/vehicle-template/vehicle-template.component.js';
+import { VehicleTemplateComponent } from './core/components/vehicles/vehicle-template/vehicle-template.component';
 
 
 export const routes: Routes = [

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApiResponse, Vehicle } from '../../models/interfaces';
 import { CommonModule } from '@angular/common';
-import { VehicleService } from '../../../vehicle.service';
+import { VehicleService } from '../../../services/vehicle.service';
 
 
 @Component({
