@@ -18,13 +18,13 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Vehicle Type</mat-label>
-    <mat-select [(ngModel)]="vehicle.vehicleType">
-      <mat-option *ngFor="let type of vehicleTypes"[value]="type">
+    <mat-select (selectionChange)="onVehicleTypeSelect($event)">
+      <mat-option *ngFor="let type of vehicleTypes"[value]="type.id">
         {{type.type}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" name="imageUrl">
 </div>
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>

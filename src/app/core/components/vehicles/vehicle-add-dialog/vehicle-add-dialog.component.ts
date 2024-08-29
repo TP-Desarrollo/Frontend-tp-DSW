@@ -6,8 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import { ApiResponse, Vehicle, VehicleType } from '../../models/interfaces';
-import { VehicleService } from '../../../services/vehicle.service';
+import { ApiResponse, VehicleType } from '../../models/interfaces';
 import { VehicleTypeService } from '../../../services/vehicle-type.service';
 
 @Component({
@@ -23,8 +22,7 @@ export class VehicleAddDialogComponent implements OnInit {
     brand: '',
     model: '',
     status: 'Available',
-    vehicleType: {} as VehicleType,
-    imageUrl: ''
+    vehicleTypeId: null as number | null,
   };
 
   vehicleTypes: VehicleType[] = [];
@@ -32,7 +30,6 @@ export class VehicleAddDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<VehicleAddDialogComponent>,
-    private vehicleService: VehicleService,
     private vehicleTypeService: VehicleTypeService
   ) {}
 
@@ -53,6 +50,10 @@ export class VehicleAddDialogComponent implements OnInit {
     });
   }
 
+  onVehicleTypeSelect(event: any): void {
+    this.vehicle.vehicleTypeId = event.value;
+  }
+
   onFileSelected(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
@@ -61,24 +62,18 @@ export class VehicleAddDialogComponent implements OnInit {
     }
   }
 
-
   onCancel(): void {
     this.dialogRef.close();
   }
 
   onSave(): void {
     if (this.selectedFile) {
-      this.vehicleService.uploadImage(this.selectedFile).subscribe({
-        next: (imageUrl: string) => {
-          this.vehicle.imageUrl = imageUrl;
-          this.dialogRef.close(this.vehicle);
-        },
-        error: (error) => {
-          console.error('Error uploading image:', error);
-        }
+      this.dialogRef.close({
+        vehicleData: this.vehicle,
+        file: this.selectedFile
       });
     } else {
-      this.dialogRef.close(this.vehicle);
+      console.error('No file selected');
     }
   }
 

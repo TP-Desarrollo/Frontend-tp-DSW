@@ -15,13 +15,24 @@ export class VehicleService {
     return this.httpClient.get<ApiResponse>(`${this.apiUrl}/vehicles`);
   }
 
-  addVehicle(vehicle: Vehicle): Observable<Vehicle> {
-    return this.httpClient.post<Vehicle>(`${this.apiUrl}/vehicles`, vehicle);
+  addVehicle(vehicleData: any, file: File): Observable<ApiResponse> {
+    const formData = new FormData();
+    
+    // Append text data
+    Object.keys(vehicleData).forEach(key => {
+      formData.append(key, vehicleData[key]);
+    });
+    
+    // Append file
+    formData.append('imageUrl', file, file.name);
+
+    return this.httpClient.post<ApiResponse>(`${this.apiUrl}/vehicles`, formData);
   }
 
-  uploadImage(file: File): Observable<string> {
-    const formData = new FormData();
-    formData.append('image', file, file.name);
-    return this.httpClient.post<string>(`${this.apiUrl}/uploads`, formData);
+  deleteVehicle(vehicle: Vehicle): Observable<ApiResponse> {
+    const id = vehicle.id;
+    return this.httpClient.delete<ApiResponse>(`${this.apiUrl}/vehicles/${id}`);
   }
+
 }
+

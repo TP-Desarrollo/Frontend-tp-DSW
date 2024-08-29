@@ -1,15 +1,14 @@
-<div *ngIf="filteredVehicles.length > 0">
-  <div class="vehicle-container">
-    <div *ngFor="let vehicle of filteredVehicles" class="vehicle-card">
-      <div class="vehicle-image">
-        <img [src]="imgPath + vehicle.imageUrl" [alt]="vehicle.brand + ' ' + vehicle.model">
-      </div>
-      <div class="vehicle-details">
-        <h3>{{ vehicle.brand }}</h3>
-        <p>{{ vehicle.model }}</p>
-        <button (click)="editVehicle(vehicle)">Edit</button>
-        <button (click)="deleteVehicle(vehicle)">Delete</button>
-      </div>
+
+<div class="vehicle-container">
+  <div *ngFor="let vehicle of filteredVehicles" class="vehicle-card">
+    <div class="vehicle-image">
+      <img [src]="imgPath + vehicle.imageUrl" [alt]="vehicle.brand + ' ' + vehicle.model">
+    </div>
+    <div class="vehicle-details">
+      <h3>{{ vehicle.brand }}</h3>
+      <p>{{ vehicle.model }}</p>
+      <button (click)="editVehicle(vehicle)">Edit</button>
+      <button (click)="deleteVehicle(vehicle)">Delete</button>
     </div>
   </div>
 </div>

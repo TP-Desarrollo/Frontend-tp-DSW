@@ -29,6 +29,7 @@ export class VehicleCardComponent {
         console.log(response);
         this.vehicleData = response;
         this.filteredVehicles = this.vehicleData.data;
+        console.log(this.filteredVehicles);
       },
       error: (error) => {
         console.log('Error fetching data:', error);
@@ -41,14 +42,24 @@ export class VehicleCardComponent {
   }
 
   deleteVehicle(vehicle: Vehicle) {
-    console.log(vehicle) //Agregar funcionalidad
+    this.vehicleService.deleteVehicle(vehicle).subscribe({
+      next: (response: ApiResponse) => {
+        console.log(response);
+        this.getData();
+      },
+      error: (error) => {
+        console.log('Error deleting vehicle:', error);
+      }
+    })
   }
 
   onFilterChange(type: string) {
     if (type === 'All') {
       this.filteredVehicles = this.vehicleData?.data || [];
+      console.log(this.filteredVehicles);
     } else {
       this.filteredVehicles = this.vehicleData?.data.filter((v: Vehicle) => v.vehicleType.type === type) || [];
+      console.log(this.filteredVehicles);
     }
   }
 
