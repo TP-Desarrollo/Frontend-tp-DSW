@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Add New Vehicle</h2>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>License Plate</mat-label>
+    <input matInput [(ngModel)]="vehicle.licensePlate">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Brand</mat-label>
+    <input matInput [(ngModel)]="vehicle.brand">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Model</mat-label>
+    <input matInput [(ngModel)]="vehicle.model">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <input matInput [(ngModel)]="vehicle.status" value="Avaiable" readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Vehicle Type</mat-label>
+    <mat-select [(ngModel)]="vehicle.vehicleType">
+      <mat-option *ngFor="let type of vehicleTypes"[value]="type">
+        {{type.type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*">
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>
