@@ -20,7 +20,12 @@ export class VehicleCardComponent {
   constructor(private vehicleService: VehicleService) {}
 
   ngOnInit(): void {
+
+    this.vehicleService.refreshNeeded$.subscribe(() => {
+      this.getData();
+    });
     this.getData();
+    
   } 
 
   getData() {
@@ -61,11 +66,6 @@ export class VehicleCardComponent {
       this.filteredVehicles = this.vehicleData?.data.filter((v: Vehicle) => v.vehicleType.type === type) || [];
       console.log(this.filteredVehicles);
     }
-  }
-
-  onVehicleAdded() {
-    console.log('New vehicle added');
-    this.getData(); // Refrescar la lista de vehículos
   }
 
 }

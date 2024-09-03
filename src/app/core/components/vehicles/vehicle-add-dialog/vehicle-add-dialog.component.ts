@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { ApiResponse, VehicleType } from '../../models/interfaces';
 import { VehicleTypeService } from '../../../services/vehicle-type.service';
+import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component.js';
 
 @Component({
   selector: 'app-vehicle-add-dialog',
@@ -22,18 +23,19 @@ export class VehicleAddDialogComponent implements OnInit {
     brand: '',
     model: '',
     status: 'Available',
-    vehicleTypeId: null as number | null,
+    vehicleType: null as number | null,
   };
 
   vehicleTypes: VehicleType[] = [];
   selectedFile: File | null = null;
+  vehicleCard: VehicleCardComponent | undefined;
 
   constructor(
     private dialogRef: MatDialogRef<VehicleAddDialogComponent>,
     private vehicleTypeService: VehicleTypeService
   ) {}
 
-   ngOnInit() {
+  ngOnInit() {
     this.loadVehicleTypes();
   }
 
@@ -51,7 +53,7 @@ export class VehicleAddDialogComponent implements OnInit {
   }
 
   onVehicleTypeSelect(event: any): void {
-    this.vehicle.vehicleTypeId = event.value;
+    this.vehicle.vehicleType = event.value;
   }
 
   onFileSelected(event: Event) {

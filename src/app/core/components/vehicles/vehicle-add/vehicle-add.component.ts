@@ -18,9 +18,7 @@ export class VehicleAddComponent {
   constructor(private dialog: MatDialog, private vehicleService: VehicleService) {}
 
   openAddDialog(): void {
-    const dialogRef = this.dialog.open(VehicleAddDialogComponent, {
-      width: '250px'
-    });
+    const dialogRef = this.dialog.open(VehicleAddDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

@@ -4,8 +4,7 @@
     <app-vehicle-filter [vehicles]="vehicleCardComponent.filteredVehicles"
       (filterChange)="onFilterChange($event)">
     </app-vehicle-filter>
-    <app-vehicle-add (vehicleAdded)="vehicleCardComponent.onVehicleAdded()">
-    </app-vehicle-add>
+    <app-vehicle-add></app-vehicle-add>
   </div>
   <app-vehicle-card #vehicleCardComponent></app-vehicle-card>
 </div>
