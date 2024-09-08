@@ -41,6 +41,15 @@ export class VehicleService {
     );
   }
 
+  updateVehicle(id: number, vehicleData: FormData): Observable<ApiResponse> {
+    return this.httpClient.put<ApiResponse>(`${this.apiUrl}/vehicles/${id}`, vehicleData)
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
+  }
+
   deleteVehicle(vehicle: Vehicle): Observable<ApiResponse> {
     const id = vehicle.id;
     return this.httpClient.delete<ApiResponse>(`${this.apiUrl}/vehicles/${id}`);

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiResponse, Vehicle } from '../../models/interfaces';
 import { CommonModule } from '@angular/common';
 import { VehicleService } from '../../../services/vehicle.service';
+import { MatDialog } from '@angular/material/dialog';
+import { VehicleEditDialogComponent } from '../vehicle-edit-dialog/vehicle-edit-dialog.component.js';
 
 
 @Component({
@@ -11,21 +13,25 @@ import { VehicleService } from '../../../services/vehicle.service';
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'
 })
-export class VehicleCardComponent {
+export class VehicleCardComponent implements OnInit {
   
   vehicleData: ApiResponse | undefined;
   filteredVehicles: Vehicle[] = [];
   imgPath = 'http://localhost:3000/uploads/';
 
-  constructor(private vehicleService: VehicleService) {}
+  constructor(
+    private vehicleService: VehicleService,
+    private dialog: MatDialog) {}
 
   ngOnInit(): void {
 
     this.vehicleService.refreshNeeded$.subscribe(() => {
       this.getData();
     });
-    this.getData();
-    
+    setTimeout(() => {
+      this.getData();
+    })
+  
   } 
 
   getData() {
@@ -43,7 +49,16 @@ export class VehicleCardComponent {
   }
 
   editVehicle(vehicle: Vehicle) {
-    console.log(vehicle) //Agregar funcionalidad
+    const dialogRef = this.dialog.open(VehicleEditDialogComponent, {
+      width: '400px',
+      data: { vehicle: vehicle }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getData();
+      }
+    });
   }
 
   deleteVehicle(vehicle: Vehicle) {

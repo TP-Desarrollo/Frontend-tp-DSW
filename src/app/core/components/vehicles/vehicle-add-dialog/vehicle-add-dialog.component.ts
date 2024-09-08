@@ -42,9 +42,7 @@ export class VehicleAddDialogComponent implements OnInit {
   loadVehicleTypes() {
     this.vehicleTypeService.getVehicleTypes().subscribe({
       next: (response: ApiResponse) => {
-        console.log('API Response:', response); 
         this.vehicleTypes = response.data; 
-        console.log('Vehicle Types:', this.vehicleTypes); 
       },
       error: (error) => {
         console.error('Error fetching vehicle types:', error);
