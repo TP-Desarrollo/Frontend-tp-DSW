@@ -1,10 +1,15 @@
 <mat-toolbar color="primary">
-  <span>Car Rental</span>
-
+  <a routerLink="/" style="text-decoration: none; color: inherit;">
+      <span>Car Rental</span>
+  </a>
   <span class="spacer"></span>
 
-  <a mat-button routerLink="vehicles">Vehicles</a>
   <a mat-button routerLink="rentals">Rents</a>
+  <a mat-button routerLink="customers">Customers</a>
+  <a mat-button routerLink="employees">Employees</a>
+  <a mat-button routerLink="localities">Localities</a>
+  <a mat-button routerLink="vehicles">Vehicles</a>
+  <a mat-button routerLink="vehicles-type">Vehicle Types</a>
   <a mat-raised-button color="accent">Log In</a>
 </mat-toolbar>
 <router-outlet></router-outlet>

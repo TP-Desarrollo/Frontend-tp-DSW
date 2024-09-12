@@ -49,10 +49,7 @@ export class VehicleCardComponent implements OnInit {
   }
 
   editVehicle(vehicle: Vehicle) {
-    const dialogRef = this.dialog.open(VehicleEditDialogComponent, {
-      width: '400px',
-      data: { vehicle: vehicle }
-    });
+    const dialogRef = this.dialog.open(VehicleEditDialogComponent, {data: { vehicle: vehicle } });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +17,6 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatOptionModule],
   templateUrl: './vehicle-edit-dialog.component.html',
   styleUrls: ['./vehicle-edit-dialog.component.css'],
-  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class VehicleEditDialogComponent implements OnInit {
   editForm: FormGroup;
