@@ -1,0 +1,37 @@
+.locality-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.locality-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+  width: 100%;
+}
+
+.locality-details {
+  display: flex;
+  text-align: left;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.locality-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.locality-attribute {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}

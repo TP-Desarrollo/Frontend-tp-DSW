@@ -1,0 +1,13 @@
+<h3 *ngIf="localityData.length === 0">No localities</h3>
+<div class="locality-container">
+  <div *ngFor="let locality of localityData" class="locality-card">
+    <div class="locality-details">
+      <h3 class="locality-attribute">ID: {{ locality.id }}</h3>
+      <h3 class="locality-attribute">Name: {{ locality.name }}</h3>
+      <h3 class="locality-attribute">Province: {{ locality.province }}</h3>
+      <div class="locality-actions">
+        <button mat-button (click)="editLocality(locality)">Edit</button>
+        <button mat-button (click)="deleteLocality(locality)">Delete</button>
+      </div>
+  </div>
+</div>
