@@ -1,14 +1,13 @@
-<h3 *ngIf ="filteredVehicles.length === 0">No vehicles</h3>
+<div *ngIf="filteredVehicles.length === 0">No vehicles</div>
+
 <div class="vehicle-container">
-  <div *ngFor="let vehicle of filteredVehicles" class="vehicle-card">
-    <div class="vehicle-image">
-      <img [src]="imgPath + vehicle.imageUrl" [alt]="vehicle.brand + ' ' + vehicle.model">
-    </div>
-    <div class="vehicle-details">
-      <h3>{{ vehicle.brand }}</h3>
-      <p>{{ vehicle.model }}</p>
-      <button mat-button (click)="editVehicle(vehicle)">Edit</button>
-      <button mat-button (click)="deleteVehicle(vehicle)">Delete</button>
-    </div>
-  </div>
+  <mat-card class="vehicle-card" *ngFor="let vehicle of filteredVehicles">
+    <img mat-card-image [src]="imgPath + vehicle.imageUrl" [alt]="vehicle.brand + ' ' + vehicle.model">
+    <mat-card-content>{{ vehicle.brand }}</mat-card-content>
+    <mat-card-content>{{ vehicle.model }}</mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="editVehicle(vehicle)">Edit</button>
+      <button mat-raised-button (click)="deleteVehicle(vehicle)">Delete</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

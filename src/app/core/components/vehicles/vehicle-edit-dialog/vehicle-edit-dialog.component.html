@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Edit Vehicle</h2>
+<h3 class="edit-dialog-title" mat-dialog-title>Edit Vehicle</h3>
 <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
   <div mat-dialog-content>
     <mat-form-field>
@@ -25,10 +25,10 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <input type="file" (change)="onFileSelected($event)">
+    <input class="edit-dialog-img-input" type="file" (change)="onFileSelected($event)">
   </div>
-  <div mat-dialog-actions>
+  <mat-dialog-actions>
     <button mat-button (click)="onCancel()">Cancel</button>
     <button mat-button type="submit" [disabled]="!editForm.valid">Save</button>
-  </div>
+  </mat-dialog-actions>
 </form>

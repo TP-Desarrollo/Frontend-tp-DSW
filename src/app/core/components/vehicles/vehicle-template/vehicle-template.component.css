@@ -2,6 +2,14 @@
   padding: 20px;
 }
 
+.vehicle-template-title {
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+
 .filter-and-add {
   display: flex;
   justify-content: space-between;

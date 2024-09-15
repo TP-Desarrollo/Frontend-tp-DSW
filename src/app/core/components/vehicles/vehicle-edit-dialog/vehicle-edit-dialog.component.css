@@ -1,0 +1,25 @@
+.edit-dialog-title {
+  margin-left: 20px;
+  font-family: Roboto, sans-serif;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.edit-dialog-img-input{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+mat-dialog-content {
+  max-height: 500px;
+  overflow-y: auto;
+}

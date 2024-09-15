@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { VehicleService } from '../../../services/vehicle.service';
 import { MatDialog } from '@angular/material/dialog';
 import { VehicleEditDialogComponent } from '../vehicle-edit-dialog/vehicle-edit-dialog.component.js';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 
 @Component({
   selector: 'app-vehicle-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatCardModule],
   templateUrl: './vehicle-card.component.html',
   styleUrl: './vehicle-card.component.css'
 })
