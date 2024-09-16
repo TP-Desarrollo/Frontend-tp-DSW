@@ -1,8 +1,7 @@
 <div class="vehicle-template">
   <h2 class="vehicle-template-title">Vehicle Management</h2>
   <div class="filter-and-add">
-    <app-vehicle-filter [vehicles]="vehicleCardComponent.filteredVehicles"
-      (filterChange)="onFilterChange($event)">
+    <app-vehicle-filter (filterChange)="onFilterChange($event)">
     </app-vehicle-filter>
     <app-vehicle-add></app-vehicle-add>
   </div>

@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Vehicle } from '../../models/interfaces';
+import { VehicleTypeService } from '../../../services/vehicle-type.service';
+import { VehicleType } from '../../models/interfaces.js';
 
 @Component({
   selector: 'app-vehicle-filter',
@@ -10,24 +11,31 @@ import { Vehicle } from '../../models/interfaces';
   styleUrls: ['./vehicle-filter.component.css']
 })
 export class VehicleFilterComponent {
-  @Input() vehicles: Vehicle[] = [];
-  @Output() filterChange = new EventEmitter<string>();
+ @Output() filterChange = new EventEmitter<string>();
 
-  vehicleTypes: string[] = [];
+  allTypes: string[] = ['All'];
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['vehicles'] && this.vehicles) {
-      this.updateVehicleType();
-    }
+  constructor(
+    private vehicleTypeService: VehicleTypeService) {}
+
+  ngOnInit() {
+    this.loadVehicleTypes();
   }
 
-  updateVehicleType() {
-    const types = new Set(this.vehicles.map(v => v.vehicleType.type));
-    this.vehicleTypes = Array.from(types);
+  loadVehicleTypes() {
+    this.vehicleTypeService.getVehicleTypes().subscribe({
+      next: (response) => {
+        this.allTypes = ['All', ...response.data.map((t: VehicleType) => t.type)];
+      },
+      error: (error) => {
+        console.error('Error fetching vehicle types:', error);
+      }
+    });
   }
 
   onFilterChange(event: Event) {
     const selectedType = (event.target as HTMLSelectElement).value;
     this.filterChange.emit(selectedType);
   }
+
 }

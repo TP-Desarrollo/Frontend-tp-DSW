@@ -28,15 +28,15 @@ export class VehicleCardComponent implements OnInit {
   ngOnInit(): void {
 
     this.vehicleService.refreshNeeded$.subscribe(() => {
-      this.getData();
+      this.getVehicles();
     });
     setTimeout(() => {
-      this.getData();
+      this.getVehicles();
     })
   
   } 
 
-  getData() {
+  getVehicles() {
     this.vehicleService.getVehicles().subscribe({
       next: (response: ApiResponse) => {
         console.log(response);
@@ -55,7 +55,7 @@ export class VehicleCardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getData();
+        this.getVehicles();
       }
     });
   }
@@ -64,7 +64,7 @@ export class VehicleCardComponent implements OnInit {
     this.vehicleService.deleteVehicle(vehicle).subscribe({
       next: (response: ApiResponse) => {
         console.log(response);
-        this.getData();
+        this.getVehicles();
       },
       error: (error) => {
         console.log('Error deleting vehicle:', error);
@@ -75,10 +75,8 @@ export class VehicleCardComponent implements OnInit {
   onFilterChange(type: string) {
     if (type === 'All') {
       this.filteredVehicles = this.vehicleData?.data || [];
-      console.log(this.filteredVehicles);
     } else {
       this.filteredVehicles = this.vehicleData?.data.filter((v: Vehicle) => v.vehicleType.type === type) || [];
-      console.log(this.filteredVehicles);
     }
   }
 

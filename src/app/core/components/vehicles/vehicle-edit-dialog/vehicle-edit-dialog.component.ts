@@ -9,12 +9,13 @@ import { VehicleTypeService } from '../../../services/vehicle-type.service';
 import { Vehicle, VehicleType, ApiResponse } from '../../models/interfaces';
 import { MatOptionModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-vehicle-edit-dialog',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatOptionModule, MatDialogActions],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatOptionModule, MatDialogActions, MatButtonModule],
   templateUrl: './vehicle-edit-dialog.component.html',
   styleUrls: ['./vehicle-edit-dialog.component.css'],
 })
