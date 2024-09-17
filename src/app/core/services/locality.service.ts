@@ -22,6 +22,15 @@ export class LocalityService {
     return this.httpClient.get<ApiResponse>(`${this.apiUrl}/localities`);
   }
 
+  addLocality(locality: Locality): Observable<ApiResponse> {
+    return this.httpClient.post<ApiResponse>(`${this.apiUrl}/localities`, locality)
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next()
+      })
+    );
+  }
+
   deleteLocality(locality: Locality): Observable<ApiResponse> {
     const id = locality.id;
     return this.httpClient.delete<ApiResponse>(`${this.apiUrl}/localities/${id}`);
