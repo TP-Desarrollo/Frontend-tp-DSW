@@ -9,8 +9,8 @@ import { VehicleService } from '../../../services/vehicle.service.js';
   selector: 'app-vehicle-add',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatDialogModule],
-  template: '<button mat-raised-button color="primary" (click)="openAddDialog()">Add Vehicle</button>',
-  styles: ['button { margin-left: 10px; }'],
+  templateUrl: './vehicle-add.component.html',
+  styleUrls: ['./vehicle-add.component.css'],
 })
 export class VehicleAddComponent {
   @Output() vehicleAdded = new EventEmitter<void>();
