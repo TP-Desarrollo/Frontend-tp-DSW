@@ -1,13 +1,18 @@
 <h3 *ngIf="localityData.length === 0">No localities</h3>
 <div class="locality-container">
-  <div *ngFor="let locality of localityData" class="locality-card">
-    <div class="locality-details">
-      <h3 class="locality-attribute">ID: {{ locality.id }}</h3>
-      <h3 class="locality-attribute">Name: {{ locality.name }}</h3>
-      <h3 class="locality-attribute">Province: {{ locality.province }}</h3>
-      <div class="locality-actions">
-        <button mat-button (click)="editLocality(locality)">Edit</button>
-        <button mat-button (click)="deleteLocality(locality)">Delete</button>
+  <mat-card *ngFor="let locality of localityData" class="locality-card">
+    <div class="locality-content">
+      <div class="locality-info">
+        <mat-card-content>ID: {{ locality.id }}</mat-card-content>
+        <mat-card-content>Name: {{ locality.name }}</mat-card-content>
+        <mat-card-content>Province: {{ locality.province }}</mat-card-content>
       </div>
-  </div>
+      <div class="button-container">
+        <mat-card-actions>
+          <button mat-raised-button (click)="editLocality(locality)">Edit</button>
+          <button mat-raised-button (click)="deleteLocality(locality)">Delete</button>
+        </mat-card-actions>
+      </div>
+    </div>
+  </mat-card>
 </div>
