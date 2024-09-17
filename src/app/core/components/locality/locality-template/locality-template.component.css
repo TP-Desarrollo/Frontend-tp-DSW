@@ -1,0 +1,13 @@
+.locality-template-title {
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-left: 20px;
+}
+
+.locality-add {
+  display: flex;
+  justify-content: right;
+  margin: 20px;
+}
