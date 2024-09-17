@@ -1,0 +1,18 @@
+<h3 *ngIf="vehicleTypeData.length === 0">No localities</h3>
+<div class="vehicle-type-container">
+  <mat-card *ngFor="let vehicletype of vehicleTypeData" class="vehicle-type-card">
+    <div class="vehicle-type-content">
+      <div class="vehicle-type-info">
+        <mat-card-content>ID: {{ vehicletype.id }}</mat-card-content>
+        <mat-card-content>Type: {{ vehicletype.type }}</mat-card-content>
+        <mat-card-content>Description: {{ vehicletype.description }}</mat-card-content>
+      </div>
+      <div class="button-container">
+        <mat-card-actions>
+          <button mat-raised-button (click)="editVehicleType(vehicletype)">Edit</button>
+          <button mat-raised-button (click)="deleteVehicleType(vehicletype)">Delete</button>
+        </mat-card-actions>
+      </div>
+    </div>
+  </mat-card>
+</div>
