@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Edit Locality</h2>
+<form [formGroup]="localityForm" (ngSubmit)="onSave()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="localityForm.get('name')?.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Province</mat-label>
+      <input matInput formControlName="province" required>
+      <mat-error *ngIf="localityForm.get('province')?.hasError('required')">
+        Province is required
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button color="primary" type="submit" [disabled]="localityForm.invalid">Save</button>
+  </mat-dialog-actions>
+</form>
