@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
-import { MAT_DIALOG_DATA, MatDialogActions, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { VehicleService } from '../../../services/vehicle.service';
 import { VehicleTypeService } from '../../../services/vehicle-type.service';
 import { Vehicle, VehicleType, ApiResponse } from '../../models/interfaces';
@@ -15,12 +15,12 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-vehicle-edit-dialog',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatOptionModule, MatDialogActions, MatButtonModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatOptionModule, MatDialogModule, MatButtonModule],
   templateUrl: './vehicle-edit-dialog.component.html',
   styleUrls: ['./vehicle-edit-dialog.component.css'],
 })
 export class VehicleEditDialogComponent implements OnInit {
-  editForm: FormGroup;
+  vehicleForm: FormGroup;
   vehicleTypes: VehicleType[] = [];
   selectedFile: File | null = null;
 
@@ -31,7 +31,7 @@ export class VehicleEditDialogComponent implements OnInit {
     private vehicleService: VehicleService,
     private vehicleTypeService: VehicleTypeService
   ) {
-    this.editForm = this.fb.group({
+    this.vehicleForm = this.fb.group({
       licensePlate: [data.vehicle.licensePlate, Validators.required],
       brand: [data.vehicle.brand, Validators.required],
       model: [data.vehicle.model, Validators.required],
@@ -61,14 +61,14 @@ export class VehicleEditDialogComponent implements OnInit {
   }
 
   onVehicleTypeSelect(event: any): void {
-    this.editForm.value.vehicleType = event.value;
+    this.vehicleForm.value.vehicleType = event.value;
   }
 
   onSubmit(): void {
-    if (this.editForm.valid) {
+    if (this.vehicleForm.valid) {
       const formData = new FormData();
-      Object.keys(this.editForm.value).forEach(key => {
-        formData.append(key, this.editForm.value[key]);
+      Object.keys(this.vehicleForm.value).forEach(key => {
+        formData.append(key, this.vehicleForm.value[key]);
       });
 
       if (this.selectedFile) {

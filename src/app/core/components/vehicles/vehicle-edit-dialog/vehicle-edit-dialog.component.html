@@ -1,34 +1,56 @@
-<h3 class="edit-dialog-title" mat-dialog-title>Edit Vehicle</h3>
-<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-  <div mat-dialog-content>
+<h3 mat-dialog-title>Edit Vehicle</h3>
+<form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
     <mat-form-field>
       <mat-label>License Plate</mat-label>
-      <input matInput placeholder="License Plate" formControlName="licensePlate">
+      <input matInput formControlName="licensePlate" required>
+      <mat-error *ngIf="vehicleForm.get('licensePlate')?.hasError('required')">
+        License Plate is required
+      </mat-error>
     </mat-form-field>
+  
     <mat-form-field>
       <mat-label>Brand</mat-label>
-      <input matInput placeholder="Brand" formControlName="brand">
+      <input matInput formControlName="brand" required>
+      <mat-error *ngIf="vehicleForm.get('brand')?.hasError('required')">
+        Brand is required
+      </mat-error>
     </mat-form-field>
+  
     <mat-form-field>
       <mat-label>Model</mat-label>
-      <input matInput placeholder="Model" formControlName="model">
+      <input matInput formControlName="model" required>
+      <mat-error *ngIf="vehicleForm.get('model')?.hasError('required')">
+        Model is required
+      </mat-error>
     </mat-form-field>
+  
     <mat-form-field>
       <mat-label>Status</mat-label>
-      <input matInput placeholder="Status" formControlName="status">
+      <input matInput formControlName="status" required>
+      <mat-error *ngIf="vehicleForm.get('status')?.hasError('required')">
+        Status is required
+      </mat-error>
     </mat-form-field>
+  
     <mat-form-field>
       <mat-label>Vehicle Type</mat-label>
-      <mat-select placeholder="Vehicle Type" (selectionChange)="onVehicleTypeSelect($event)" formControlName="vehicleType">
+      <mat-select formControlName="vehicleType" required>
         <mat-option *ngFor="let type of vehicleTypes" [value]="type.id">
           {{type.type}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="vehicleForm.get('vehicleType')?.hasError('required')">
+        Vehicle Type is required
+      </mat-error>
     </mat-form-field>
-    <input class="edit-dialog-img-input" type="file" (change)="onFileSelected($event)">
-  </div>
+  
+    <input type="file" (change)="onFileSelected($event)" accept="image/*">
+
+  </mat-dialog-content>
+  
   <mat-dialog-actions>
     <button mat-button (click)="onCancel()">Cancel</button>
-    <button mat-button type="submit" [disabled]="!editForm.valid">Save</button>
+    <button mat-button type="submit" [disabled]="!vehicleForm.valid">Save</button>
   </mat-dialog-actions>
 </form>
