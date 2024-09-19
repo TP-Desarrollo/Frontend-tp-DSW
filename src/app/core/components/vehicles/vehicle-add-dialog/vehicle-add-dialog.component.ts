@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiResponse, VehicleType } from '../../models/interfaces';
 import { VehicleTypeService } from '../../../services/vehicle-type.service';
 import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component.js';
@@ -13,27 +13,29 @@ import { VehicleCardComponent } from '../vehicle-card/vehicle-card.component.js'
 @Component({
   selector: 'app-vehicle-add-dialog',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, MatDialogModule, MatSelectModule],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule],
   templateUrl: './vehicle-add-dialog.component.html',
   styleUrl: './vehicle-add-dialog.component.css'
 })
 export class VehicleAddDialogComponent implements OnInit {
-  vehicle = {
-    licensePlate: '',
-    brand: '',
-    model: '',
-    status: 'Available',
-    vehicleType: null as number | null,
-  };
-
+  vehicleForm: FormGroup;
   vehicleTypes: VehicleType[] = [];
   selectedFile: File | null = null;
   vehicleCard: VehicleCardComponent | undefined;
 
   constructor(
     private dialogRef: MatDialogRef<VehicleAddDialogComponent>,
-    private vehicleTypeService: VehicleTypeService
-  ) {}
+    private vehicleTypeService: VehicleTypeService,
+    private fb: FormBuilder
+  ) {
+    this.vehicleForm = this.fb.group({
+      licensePlate: ['', Validators.required],
+      brand: ['', Validators.required],
+      model: ['', Validators.required],
+      status: ['Available', Validators.required],
+      vehicleType: [null, Validators.required]
+    });
+  }
 
   ngOnInit() {
     this.loadVehicleTypes();
@@ -42,7 +44,7 @@ export class VehicleAddDialogComponent implements OnInit {
   loadVehicleTypes() {
     this.vehicleTypeService.getVehicleTypes().subscribe({
       next: (response: ApiResponse) => {
-        this.vehicleTypes = response.data; 
+        this.vehicleTypes = response.data;
       },
       error: (error) => {
         console.error('Error fetching vehicle types:', error);
@@ -51,7 +53,7 @@ export class VehicleAddDialogComponent implements OnInit {
   }
 
   onVehicleTypeSelect(event: any): void {
-    this.vehicle.vehicleType = event.value;
+    this.vehicleForm.patchValue({ vehicleType: event.value });
   }
 
   onFileSelected(event: Event) {
@@ -67,14 +69,14 @@ export class VehicleAddDialogComponent implements OnInit {
   }
 
   onSave(): void {
-    if (this.selectedFile) {
+    if (this.vehicleForm.valid && this.selectedFile) {
       this.dialogRef.close({
-        vehicleData: this.vehicle,
+        vehicleData: this.vehicleForm.value,
         file: this.selectedFile
       });
     } else {
-      console.error('No file selected');
+      console.error('Form is invalid or no file selected');
+      this.vehicleForm.markAllAsTouched();
     }
   }
-
 }

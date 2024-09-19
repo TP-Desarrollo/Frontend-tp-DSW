@@ -1,32 +1,60 @@
 <h2 mat-dialog-title>Add New Vehicle</h2>
-<div mat-dialog-content>
-  <mat-form-field>
-    <mat-label>License Plate</mat-label>
-    <input matInput [(ngModel)]="vehicle.licensePlate">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Brand</mat-label>
-    <input matInput [(ngModel)]="vehicle.brand">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Model</mat-label>
-    <input matInput [(ngModel)]="vehicle.model">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Status</mat-label>
-    <input matInput [(ngModel)]="vehicle.status" value="Avaiable" readonly>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Vehicle Type</mat-label>
-    <mat-select (selectionChange)="onVehicleTypeSelect($event)">
-      <mat-option *ngFor="let type of vehicleTypes"[value]="type.id">
-        {{type.type}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <input type="file" (change)="onFileSelected($event)" accept="image/*" name="imageUrl">
-</div>
-<mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onSave()">Save</button>
-</mat-dialog-actions>
+
+<form [formGroup]="vehicleForm" (ngSubmit)="onSave()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>License Plate</mat-label>
+      <input matInput formControlName="licensePlate" required>
+      <mat-error *ngIf="vehicleForm.get('licensePlate')?.invalid && vehicleForm.get('licensePlate')?.touched">
+        License Plate is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Brand</mat-label>
+      <input matInput formControlName="brand" required>
+      <mat-error *ngIf="vehicleForm.get('brand')?.invalid && vehicleForm.get('brand')?.touched">
+        Brand is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Model</mat-label>
+      <input matInput formControlName="model" required>
+      <mat-error *ngIf="vehicleForm.get('model')?.invalid && vehicleForm.get('model')?.touched">
+        Model is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="Available">Available</mat-option>
+        <mat-option value="In Use">In Use</mat-option>
+        <mat-option value="Maintenance">Maintenance</mat-option>
+      </mat-select>
+      <mat-error *ngIf="vehicleForm.get('status')?.invalid && vehicleForm.get('status')?.touched">
+        Status is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Vehicle Type</mat-label>
+      <mat-select formControlName="vehicleType" required (selectionChange)="onVehicleTypeSelect($event)">
+        <mat-option *ngFor="let type of vehicleTypes" [value]="type.id">
+          {{type.type}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="vehicleForm.get('vehicleType')?.invalid && vehicleForm.get('vehicleType')?.touched">
+        Vehicle Type is required
+      </mat-error>
+    </mat-form-field>
+
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" required>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button type="submit" [disabled]="vehicleForm.invalid || !selectedFile">Save</button>
+  </div>
+</form>
