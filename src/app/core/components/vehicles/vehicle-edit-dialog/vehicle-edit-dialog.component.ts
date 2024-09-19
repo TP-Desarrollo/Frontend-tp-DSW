@@ -76,8 +76,8 @@ export class VehicleEditDialogComponent implements OnInit {
       }
 
       this.vehicleService.updateVehicle(this.data.vehicle.id, formData).subscribe({
-        next: (response) => {
-          this.dialogRef.close(response);
+        next: (response: ApiResponse) => {
+          this.dialogRef.close(response.data);
         },
         error: (error) => console.error('Error updating vehicle:', error)
       });

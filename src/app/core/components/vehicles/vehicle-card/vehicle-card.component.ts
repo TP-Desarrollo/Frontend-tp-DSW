@@ -51,11 +51,17 @@ export class VehicleCardComponent implements OnInit {
   }
 
   editVehicle(vehicle: Vehicle) {
-    const dialogRef = this.dialog.open(VehicleEditDialogComponent, {data: { vehicle: vehicle } });
+    const dialogRef = this.dialog.open(VehicleEditDialogComponent, {
+      data: { vehicle: { ...vehicle } }
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getVehicles();
+        const index = this.filteredVehicles.findIndex(v => v.id === result.id);
+        if (index !== -1) {
+          this.filteredVehicles[index] = result;
+        }
+        this.filteredVehicles = [...this.filteredVehicles];
       }
     });
   }
