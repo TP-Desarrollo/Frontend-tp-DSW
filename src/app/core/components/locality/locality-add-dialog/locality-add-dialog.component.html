@@ -1,15 +1,26 @@
 <h2 mat-dialog-title>Add New Locality</h2>
-<div mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="locality.name">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Province</mat-label>
-    <input matInput [(ngModel)]="locality.province">
-  </mat-form-field>
-</div>
-<mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onSave()">Save</button>
-</mat-dialog-actions>
+
+<form [formGroup]="localityForm" (ngSubmit)="onSave()">
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="localityForm.get('name')?.invalid && localityForm.get('name')?.touched">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Province</mat-label>
+      <input matInput formControlName="province" required>
+      <mat-error *ngIf="localityForm.get('province')?.invalid && localityForm.get('province')?.touched">
+        Province is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button type="submit" [disabled]="localityForm.invalid">Save</button>
+  </div>
+</form>
