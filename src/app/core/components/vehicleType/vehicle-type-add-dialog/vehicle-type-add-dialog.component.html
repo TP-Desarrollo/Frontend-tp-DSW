@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Add New Vehicle Type</h2>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Type</mat-label>
+    <input matInput [(ngModel)]="vehicleType.type" required>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="vehicleType.description" required>
+  </mat-form-field>
+</div>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>

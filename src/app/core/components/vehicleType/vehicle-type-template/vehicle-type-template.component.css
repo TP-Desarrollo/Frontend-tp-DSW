@@ -5,3 +5,9 @@
   letter-spacing: 0;
   margin-left: 20px;
 }
+
+.vehicle-type-add {
+  display: flex;
+  justify-content: right;
+  margin: 20px;
+}
