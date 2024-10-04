@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VehicleService } from '../../../services/vehicle.service';
 import { MatDialog } from '@angular/material/dialog';
 import { VehicleEditDialogComponent } from '../vehicle-edit-dialog/vehicle-edit-dialog.component.js';
+import { VehicleDetailWindowComponent } from '../vehicle-detail-window/vehicle-detail-window.component.js';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
@@ -84,6 +85,18 @@ export class VehicleCardComponent implements OnInit {
     } else {
       this.filteredVehicles = this.vehicleData?.data.filter((v: Vehicle) => v.vehicleType.type === type) || [];
     }
+  }
+
+  showVehicleDetails(vehicle: Vehicle, event: Event) {
+    if ((event.target as HTMLElement).closest('button')) {
+      return;
+    }
+    this.dialog.open(VehicleDetailWindowComponent, {
+      data: { vehicle },
+      width: '600px',
+      position: { top: '50px' },
+      panelClass: 'vehicle-detail-dialog'
+    });
   }
 
 }

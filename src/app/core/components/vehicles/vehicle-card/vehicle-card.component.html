@@ -1,7 +1,7 @@
 <div *ngIf="filteredVehicles.length === 0">No vehicles</div>
 
 <div class="vehicle-container">
-  <mat-card class="vehicle-card" *ngFor="let vehicle of filteredVehicles">
+  <mat-card class="vehicle-card" (click)="showVehicleDetails(vehicle, $event)" *ngFor="let vehicle of filteredVehicles">
     <img mat-card-image [src]="imgPath + vehicle.imageUrl" [alt]="vehicle.brand + ' ' + vehicle.model">
     <mat-card-content>{{ vehicle.brand }}</mat-card-content>
     <mat-card-content>{{ vehicle.model }}</mat-card-content>
