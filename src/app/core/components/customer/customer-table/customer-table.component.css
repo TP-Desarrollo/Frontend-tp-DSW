@@ -1,0 +1,31 @@
+table {
+  width: 80%;
+}
+
+.name-filter {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.mat-elevation-z8 {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px 20px 20px 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-paginator {
+  margin-bottom: 50px;
+}
+
+td,
+th {
+  width: 15%;
+}
