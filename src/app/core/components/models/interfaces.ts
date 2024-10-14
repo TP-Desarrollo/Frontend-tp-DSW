@@ -15,7 +15,7 @@ export interface Customer{
     firstName: string, 
     email: string,
     password: string, 
-    adress: string,
+    address: string,
     phone: string,
     lastName: string,
     locality: Locality,
