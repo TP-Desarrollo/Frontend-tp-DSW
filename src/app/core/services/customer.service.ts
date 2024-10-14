@@ -22,4 +22,20 @@ export class CustomerService {
   getCustomers(): Observable<ApiResponse> {
     return this.httpClient.get<ApiResponse>(`${this.apiUrl}/customers`);
   }
+
+  updateCustomer(customer: Customer): Observable<ApiResponse> {
+    const id = customer.id;
+    // Create a new object with locality.id instead of the full locality object
+    const customerToUpdate = {
+      ...customer,
+      locality: customer.locality?.id  // Send only the locality ID
+    };
+    return this.httpClient.put<ApiResponse>(`${this.apiUrl}/customers/${id}`, customerToUpdate)
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next();
+      })
+    );
+  }
+
 }
