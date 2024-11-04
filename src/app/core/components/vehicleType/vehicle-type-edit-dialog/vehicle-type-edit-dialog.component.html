@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Edit Vehicle Type</h2>
+<form [formGroup]="vehicleTypeForm" (ngSubmit)="onSave()">
+  <mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <input matInput formControlName="type" required>
+      <mat-error *ngIf="vehicleTypeForm.get('type')?.hasError('required')">
+        Type is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" required>
+      <mat-error *ngIf="vehicleTypeForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-button color="primary" type="submit" [disabled]="vehicleTypeForm.invalid">Save</button>
+  </mat-dialog-actions>
+</form>

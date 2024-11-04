@@ -33,6 +33,16 @@ export class VehicleTypeService {
     );
   }
 
+  updateVehicleType(vehicleType: VehicleType): Observable<ApiResponse> {
+    const id = vehicleType.id;
+    return this.httpClient.put<ApiResponse>(`${this.apiUrl}/vehicle-types/${id}`, vehicleType)
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next()
+      })
+    );
+  }
+
   deleteVehicleType(vehicleType: VehicleType): Observable<ApiResponse> {
     const id = vehicleType.id;
     return this.httpClient.delete<ApiResponse>(`${this.apiUrl}/vehicle-types/${id}`);
