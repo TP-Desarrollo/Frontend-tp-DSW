@@ -1,0 +1,33 @@
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 24px;
+  }
+
+  .dialog-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-bottom: 16px;
+  }
+
+  .dialog-message {
+    margin-bottom: 24px;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    .cancel-button {
+      margin-right: 8px;
+    }
+
+    .confirm-button {
+      background-color: #e53935;
+      color: white;
+    }
+  }
