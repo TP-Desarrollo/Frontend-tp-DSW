@@ -7,6 +7,7 @@ import { VehicleEditDialogComponent } from '../vehicle-edit-dialog/vehicle-edit-
 import { VehicleDetailWindowComponent } from '../vehicle-detail-window/vehicle-detail-window.component.js';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { DeleteConfirmationDialogComponent } from '../../delete-confirmation-dialog/delete-confirmation-dialog.component.js';
 
 
 @Component({
@@ -68,15 +69,25 @@ export class VehicleCardComponent implements OnInit {
   }
 
   deleteVehicle(vehicle: Vehicle) {
-    this.vehicleService.deleteVehicle(vehicle).subscribe({
-      next: (response: ApiResponse) => {
-        console.log(response);
-        this.getVehicles();
-      },
-      error: (error) => {
-        console.log('Error deleting vehicle:', error);
+    this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: {
+        title: 'Delete Vehicle',
+        message: `Are you sure you want to delete the vehicle: ${vehicle.brand} ${vehicle.model}?`,
+        confirmLabel: 'Delete'
       }
-    })
+    }).afterClosed().subscribe(result => {
+      if (result) {
+        this.vehicleService.deleteVehicle(vehicle).subscribe({
+          next: (response: ApiResponse) => {
+            console.log(response);
+            this.getVehicles();
+          },
+          error: (error) => {
+            console.log('Error deleting vehicle:', error);
+          }
+        });
+      }
+    });
   }
 
   onFilterChange(type: string) {
