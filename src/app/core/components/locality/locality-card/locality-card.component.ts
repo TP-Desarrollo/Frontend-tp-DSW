@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ApiResponse, Locality } from '../../models/interfaces.js';
+import { ApiResponse, Customer, Locality } from '../../models/interfaces.js';
 import { LocalityService } from '../../../services/locality.service.js';
+import { CustomerService } from '../../../services/customer.service.js';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -17,9 +18,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class LocalityCardComponent {
   apiResponse: ApiResponse | undefined;
   localityData: Locality[] = [];
+  customerData: Customer[] = [];
 
   constructor(
     private localityService: LocalityService,
+    private customerService: CustomerService,
     private dialog: MatDialog
   ) {}
 
@@ -58,9 +61,28 @@ export class LocalityCardComponent {
   }
 
   deleteLocality(locality: Locality) {
-    console.log("delete button")
+    this.customerService.getCustomers().subscribe({
+      next: (response: ApiResponse) => {
+        this.customerData = response.data;
+        console.log(this.customerData);
+      },
+      error: (error) => {
+        console.log('Error fetching data:', error);
+      }
+    })
+    if (this.customerData.length > 0) {
+      return console.log("locality has customers");
+    }
+    else {
+      this.localityService.deleteLocality(locality).subscribe({
+        next: (response: ApiResponse) => {
+          this.apiResponse = response;
+          console.log(this.apiResponse);
+        },
+        error: (error) => {
+          console.log('Error fetching data:', error);
+        }
+      });
+    }
   }
-
 }
-
-
