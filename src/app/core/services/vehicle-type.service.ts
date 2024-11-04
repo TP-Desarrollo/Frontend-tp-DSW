@@ -15,6 +15,10 @@ export class VehicleTypeService {
 
   private _refreshNeeded$ = new Subject<void>();
 
+  private vehicleTypeUpdated = new Subject<VehicleType>();
+
+  vehicleTypeUpdated$ = this.vehicleTypeUpdated.asObservable();
+
   get refreshNeeded$() {
     return this._refreshNeeded$;
   }
@@ -41,6 +45,10 @@ export class VehicleTypeService {
         this._refreshNeeded$.next()
       })
     );
+  }
+
+  emitVehicleTypeUpdated(vehicleType: VehicleType) {
+    this.vehicleTypeUpdated.next(vehicleType);
   }
 
   deleteVehicleType(vehicleType: VehicleType): Observable<ApiResponse> {

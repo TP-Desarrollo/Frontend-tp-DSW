@@ -7,6 +7,8 @@ import { VehicleTypeService } from '../../../services/vehicle-type.service.js';
 import { VehicleService } from '../../../services/vehicle.service.js';
 import { VehicleTypeEditDialogComponent } from '../vehicle-type-edit-dialog/vehicle-type-edit-dialog.component.js';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmationDialogComponent } from '../../delete-confirmation-dialog/delete-confirmation-dialog.component.js';
+import { WarningWindowComponent } from '../../warning-window/warning-window.component.js';
 
 @Component({
   selector: 'app-vehicle-type-card',
@@ -58,32 +60,48 @@ export class VehicleTypeCardComponent {
         console.log("edit good")
       }
     });
+
+    this.vehicleTypeService.updateVehicleType(vehicleType).subscribe({
+      next: (response) => {
+        console.log('Vehicle Type updated successfully', response);
+        this.vehicleTypeService.emitVehicleTypeUpdated(vehicleType);
+      },
+      error: (error) => {
+        console.error('Error updating vehicle type', error);
+      }
+    });
+
   }
 
   deleteVehicleType(vehicleType: VehicleType) {
-    this.vehicleService.getVehicles().subscribe({
-      next: (response: ApiResponse) => {
-        this.vehicleData = response.data;
-        console.log(this.vehicleData);
-      },
-      error: (error) => {
-        console.log('Error fetching data:', error);
+    this.dialog.open(DeleteConfirmationDialogComponent, {
+      data: {
+        title: 'Delete Vehicle Type',
+        message: `Are you sure you want to delete the vehicle: ${vehicleType.type}?`,
+        confirmLabel: 'Delete'
       }
-    })
-    if (this.vehicleData.length > 0) {
-      return console.log("vehicle type has vehicles");
-    }
-    else {
-      this.vehicleTypeService.deleteVehicleType(vehicleType).subscribe({
-        next: (response: ApiResponse) => {
-          console.log(response);
-          this.getVehicleTypes();
-        },
-        error: (error) => {
-          console.log('Error deleting vehicle type:', error);
-        }
-      })
-    }
+    }).afterClosed().subscribe(result => {
+      if (result) {
+        this.vehicleTypeService.deleteVehicleType(vehicleType).subscribe({
+          next: (response: ApiResponse) => {
+            console.log(response);
+            this.getVehicleTypes();
+          },
+          error: (error) => {
+            if (error.status == 400) {
+              this.dialog.open(WarningWindowComponent, {
+                data: {
+                  title: 'Warning',
+                  message: 'Cannot delete vehicle type because it is associated with vehicles. First delete the associated vehicles.'
+                }
+              })
+            }
+            else {
+              console.log('Error deleting vehicle type:', error);
+            }
+          }
+        })
+      }
+    });
   }
-
 }

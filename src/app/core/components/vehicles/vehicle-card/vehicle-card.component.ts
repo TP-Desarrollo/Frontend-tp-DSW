@@ -8,7 +8,7 @@ import { VehicleDetailWindowComponent } from '../vehicle-detail-window/vehicle-d
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { DeleteConfirmationDialogComponent } from '../../delete-confirmation-dialog/delete-confirmation-dialog.component.js';
-
+import { VehicleTypeService } from '../../../services/vehicle-type.service.js';
 
 @Component({
   selector: 'app-vehicle-card',
@@ -25,6 +25,7 @@ export class VehicleCardComponent implements OnInit {
 
   constructor(
     private vehicleService: VehicleService,
+    private vehicleTypeService: VehicleTypeService,
     private dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -35,7 +36,14 @@ export class VehicleCardComponent implements OnInit {
     setTimeout(() => {
       this.getVehicles();
     })
-  
+    this.vehicleTypeService.vehicleTypeUpdated$.subscribe(vehicleType => {
+      // Update the vehicle type data in the component
+      this.vehicleData?.data.forEach((vehicle: Vehicle) => {
+        if (vehicle.vehicleType.id === vehicleType.id) {
+          vehicle.vehicleType = vehicleType;
+        }
+      });
+    });
   } 
 
   getVehicles() {
