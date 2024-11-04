@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { VehicleTypeService } from '../../../services/vehicle-type.service.js';
-import { VehicleService } from '../../../services/vehicle.service.js';
 import { VehicleTypeEditDialogComponent } from '../vehicle-type-edit-dialog/vehicle-type-edit-dialog.component.js';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../../delete-confirmation-dialog/delete-confirmation-dialog.component.js';
@@ -24,7 +23,6 @@ export class VehicleTypeCardComponent {
 
   constructor(
     private vehicleTypeService: VehicleTypeService,
-    private vehicleService: VehicleService,
     private dialog: MatDialog,
   ) {}
 
@@ -77,7 +75,7 @@ export class VehicleTypeCardComponent {
     this.dialog.open(DeleteConfirmationDialogComponent, {
       data: {
         title: 'Delete Vehicle Type',
-        message: `Are you sure you want to delete the vehicle: ${vehicleType.type}?`,
+        message: `Are you sure you want to delete the vehicle type: ${vehicleType.type} ?`,
         confirmLabel: 'Delete'
       }
     }).afterClosed().subscribe(result => {
