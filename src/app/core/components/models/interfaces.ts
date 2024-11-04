@@ -67,3 +67,8 @@ export interface DeleteConfirmationDialogData {
   confirmLabel?: string;
   cancelLabel?: string;
 }
+
+export interface WarningWindowData {
+  title: string;
+  message: string;
+}

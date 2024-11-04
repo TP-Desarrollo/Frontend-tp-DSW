@@ -1,0 +1,25 @@
+  .warning-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 24px;
+  }
+
+  .warning-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-bottom: 16px;
+  }
+
+  .warning-message {
+    margin-bottom: 24px;
+  }
+
+  .warning-actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+  }

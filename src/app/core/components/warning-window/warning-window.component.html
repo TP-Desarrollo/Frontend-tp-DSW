@@ -1,0 +1,9 @@
+<div class="warning-content">
+  <div class="warning-title" mat-dialog-title>{{ data.title }}</div>
+  <div class="warning-message" mat-dialog-content>{{ data.message }}</div>
+  <div class="warning-actions" mat-dialog-actions>
+    <button mat-button (click)="onConfirm()" class="confirm-button">
+      {{ 'Confirm' }}
+    </button>
+  </div>
+</div>
