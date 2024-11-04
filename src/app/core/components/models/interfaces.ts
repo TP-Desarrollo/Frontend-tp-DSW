@@ -60,3 +60,10 @@ export interface ApiResponse {
   message: string;
   data: any; 
 }
+
+export interface DeleteConfirmationDialogData {
+  title: string;
+  message: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+}
