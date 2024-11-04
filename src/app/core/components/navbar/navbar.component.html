@@ -1,15 +1,24 @@
-<mat-toolbar color="primary">
-  <a routerLink="/" style="text-decoration: none; color: inherit;">
-      <span>Car Rental</span>
-  </a>
-  <span class="spacer"></span>
+<div class="navbar">
+  <a [routerLink]="['']" class="navbar-brand">Car Rental</a>
 
-  <a mat-button routerLink="rentals">Rents</a>
-  <a mat-button routerLink="customers">Customers</a>
-  <!-- <a mat-button routerLink="employees">Employees</a> -->
-  <a mat-button routerLink="localities">Localities</a>
-  <a mat-button routerLink="vehicles">Vehicles</a>
-  <a mat-button routerLink="vehicles-types">Vehicle Types</a>
-  <!-- <a mat-raised-button color="accent">Log In</a> -->
-</mat-toolbar>
-<router-outlet></router-outlet>
+  <div *ngIf="!isSmallScreen" class="navbar-nav">
+    <a mat-button [routerLink]="['rentals']">Rents</a>
+    <a mat-button [routerLink]="['customers']">Customers</a>
+    <a mat-button [routerLink]="['localities']">Localities</a>
+    <a mat-button [routerLink]="['vehicles']">Vehicles</a>
+    <a mat-button [routerLink]="['vehicles-types']">Vehicle Types</a>
+  </div>
+
+  <div *ngIf="isSmallScreen" class="relative">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [routerLink]="['rentals']">Rents</button>
+      <button mat-menu-item [routerLink]="['customers']">Customers</button>
+      <button mat-menu-item [routerLink]="['localities']">Localities</button>
+      <button mat-menu-item [routerLink]="['vehicles']">Vehicles</button>
+      <button mat-menu-item [routerLink]="['vehicles-types']">Vehicle Types</button>
+    </mat-menu>
+  </div>
+</div>
