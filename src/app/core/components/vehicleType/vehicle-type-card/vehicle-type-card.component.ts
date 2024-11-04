@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { VehicleType, ApiResponse } from '../../models/interfaces.js';
+import { VehicleType, ApiResponse, Vehicle } from '../../models/interfaces.js';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { VehicleTypeService } from '../../../services/vehicle-type.service.js';
+import { VehicleService } from '../../../services/vehicle.service.js';
 import { VehicleTypeEditDialogComponent } from '../vehicle-type-edit-dialog/vehicle-type-edit-dialog.component.js';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -16,10 +17,12 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class VehicleTypeCardComponent {
   apiResponse: ApiResponse | undefined;
+  vehicleData: Vehicle[] = [];
   vehicleTypeData: VehicleType[] = [];
 
   constructor(
     private vehicleTypeService: VehicleTypeService,
+    private vehicleService: VehicleService,
     private dialog: MatDialog,
   ) {}
 
@@ -58,7 +61,29 @@ export class VehicleTypeCardComponent {
   }
 
   deleteVehicleType(vehicleType: VehicleType) {
-    console.log("delete button")
+    this.vehicleService.getVehicles().subscribe({
+      next: (response: ApiResponse) => {
+        this.vehicleData = response.data;
+        console.log(this.vehicleData);
+      },
+      error: (error) => {
+        console.log('Error fetching data:', error);
+      }
+    })
+    if (this.vehicleData.length > 0) {
+      return console.log("vehicle type has vehicles");
+    }
+    else {
+      this.vehicleTypeService.deleteVehicleType(vehicleType).subscribe({
+        next: (response: ApiResponse) => {
+          console.log(response);
+          this.getVehicleTypes();
+        },
+        error: (error) => {
+          console.log('Error deleting vehicle type:', error);
+        }
+      })
+    }
   }
 
 }
