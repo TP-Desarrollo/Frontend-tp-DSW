@@ -1,18 +1,30 @@
-<h3 *ngIf="localityData.length === 0">No localities</h3>
-<div class="locality-container">
-  <mat-card *ngFor="let locality of localityData" class="locality-card">
-    <div class="locality-content">
+<mat-card class="locality-card">
+  <div *ngIf="localityData.length === 0" class="no-data-message">
+    No localities available
+  </div>
+
+  <div *ngFor="let locality of localityData" class="locality-container">
+    <mat-card-content class="locality-content">
       <div class="locality-info">
-        <mat-card-content>ID: {{ locality.id }}</mat-card-content>
-        <mat-card-content>Name: {{ locality.name }}</mat-card-content>
-        <mat-card-content>Province: {{ locality.province }}</mat-card-content>
+        <div class="info-item">
+          <strong>ID:</strong> {{ locality.id }}
+        </div>
+        <div class="info-item">
+          <strong>Name:</strong> {{ locality.name }}
+        </div>
+        <div class="info-item">
+          <strong>Province:</strong> {{ locality.province }}
+        </div>
       </div>
+
       <div class="button-container">
-        <mat-card-actions>
-          <button mat-raised-button (click)="editLocality(locality)">Edit</button>
-          <button mat-raised-button (click)="deleteLocality(locality)">Delete</button>
-        </mat-card-actions>
+        <button mat-raised-button color="primary" (click)="editLocality(locality)">
+          Edit
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteLocality(locality)">
+          Delete
+        </button>
       </div>
-    </div>
-  </mat-card>
-</div>
+    </mat-card-content>
+  </div>
+</mat-card>

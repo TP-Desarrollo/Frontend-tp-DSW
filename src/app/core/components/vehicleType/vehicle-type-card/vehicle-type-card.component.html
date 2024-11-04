@@ -1,18 +1,30 @@
-<h3 *ngIf="vehicleTypeData.length === 0">No localities</h3>
-<div class="vehicle-type-container">
-  <mat-card *ngFor="let vehicletype of vehicleTypeData" class="vehicle-type-card">
-    <div class="vehicle-type-content">
+<mat-card class="vehicle-type-card">
+  <div *ngIf="vehicleTypeData.length === 0" class="no-data-message">
+    No vehicle types available
+  </div>
+
+  <div *ngFor="let vehicleType of vehicleTypeData" class="vehicle-type-container">
+    <mat-card-content class="vehicle-type-content">
       <div class="vehicle-type-info">
-        <mat-card-content>ID: {{ vehicletype.id }}</mat-card-content>
-        <mat-card-content>Type: {{ vehicletype.type }}</mat-card-content>
-        <mat-card-content>Description: {{ vehicletype.description }}</mat-card-content>
+        <div class="info-item">
+          <strong>ID:</strong> {{ vehicleType.id }}
+        </div>
+        <div class="info-item">
+          <strong>Type:</strong> {{ vehicleType.type }}
+        </div>
+        <div class="info-item">
+          <strong>Description:</strong> {{ vehicleType.description }}
+        </div>
       </div>
+
       <div class="button-container">
-        <mat-card-actions>
-          <button mat-raised-button (click)="editVehicleType(vehicletype)">Edit</button>
-          <button mat-raised-button (click)="deleteVehicleType(vehicletype)">Delete</button>
-        </mat-card-actions>
+        <button mat-raised-button color="primary" (click)="editVehicleType(vehicleType)">
+          Edit
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteVehicleType(vehicleType)">
+          Delete
+        </button>
       </div>
-    </div>
-  </mat-card>
-</div>
+    </mat-card-content>
+  </div>
+</mat-card>
