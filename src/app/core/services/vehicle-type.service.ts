@@ -45,7 +45,11 @@ export class VehicleTypeService {
 
   deleteVehicleType(vehicleType: VehicleType): Observable<ApiResponse> {
     const id = vehicleType.id;
-    return this.httpClient.delete<ApiResponse>(`${this.apiUrl}/vehicle-types/${id}`);
+    return this.httpClient.delete<ApiResponse>(`${this.apiUrl}/vehicle-types/${id}`)    
+    .pipe(
+      tap(() => {
+        this._refreshNeeded$.next()
+      })
+    );
   }
-
 }
