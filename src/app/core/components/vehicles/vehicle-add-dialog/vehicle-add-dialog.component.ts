@@ -29,9 +29,9 @@ export class VehicleAddDialogComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.vehicleForm = this.fb.group({
-      licensePlate: ['', Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern(/^[a-zA-Z0-9]*$/)],
-      brand: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)],
-      model: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)],
+      licensePlate: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
+      brand: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      model: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
       status: ['Available', Validators.required], // On review
       vehicleType: [null, Validators.required]
     });

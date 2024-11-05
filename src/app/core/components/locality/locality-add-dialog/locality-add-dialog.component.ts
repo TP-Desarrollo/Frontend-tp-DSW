@@ -24,8 +24,8 @@ export class LocalityAddDialogComponent implements OnInit {
 
   ngOnInit() {
     this.localityForm = this.fb.group({
-    name: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]*$/)],
-    province: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]*$/)]
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]*$/)]],
+    province: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]*$/)]]
   })
   }
 

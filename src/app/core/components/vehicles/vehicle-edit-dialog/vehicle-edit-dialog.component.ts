@@ -32,9 +32,9 @@ export class VehicleEditDialogComponent implements OnInit {
     private vehicleTypeService: VehicleTypeService
   ) {
     this.vehicleForm = this.fb.group({
-      licensePlate: [data.vehicle.licensePlate, Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern(/^[a-zA-Z0-9]*$/)],
-      brand: [data.vehicle.brand, Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)],
-      model: [data.vehicle.model, Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)],
+      licensePlate: [data.vehicle.licensePlate, [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
+      brand: [data.vehicle.brand, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      model: [data.vehicle.model, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
       status: [data.vehicle.status, Validators.required], // On review
       vehicleType: [data.vehicle.vehicleType.id, Validators.required], // On review
       imageUrl: [data.vehicle.imageUrl]

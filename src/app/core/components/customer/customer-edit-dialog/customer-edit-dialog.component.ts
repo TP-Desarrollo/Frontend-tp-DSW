@@ -32,12 +32,12 @@ customerForm: FormGroup;
     private fb: FormBuilder
   ) {
     this.customerForm = this.fb.group({
-      firstName: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)],
-      lastName: ['', Validators.required,Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)],
-      address: ['', Validators.required,Validators.minLength(3), Validators.maxLength(100), Validators.pattern(/^[a-zA-Z0-9\s]*$/)],
-      phone: ['', Validators.required,Validators.minLength(9), Validators.maxLength(25), Validators.pattern(/^[0-9]*$/)],
-      dni: ['', Validators.required,Validators.minLength(7), Validators.maxLength(8), Validators.pattern(/^[0-9]*$/)], 
-      email: ['', Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)],
+      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      lastName: ['', [Validators.required,Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      address: ['', [Validators.required,Validators.minLength(3), Validators.maxLength(100), Validators.pattern(/^[a-zA-Z0-9\s]*$/)]],
+      phone: ['', [Validators.required,Validators.minLength(9), Validators.maxLength(25), Validators.pattern(/^[0-9]*$/)]],
+      dni: ['', [Validators.required,Validators.minLength(7), Validators.maxLength(8), Validators.pattern(/^[0-9]*$/)]], 
+      email: ['', [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)]],
       locality: ['', Validators.required]  // On review of other validators
     });
 

@@ -24,8 +24,8 @@ export class VehicleTypeAddDialogComponent implements OnInit {
 
   ngOnInit() {
     this.vehicleTypeForm = this.fb.group({
-      type: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)],
-      description: ['', Validators.required, Validators.minLength(3), Validators.maxLength(250), Validators.pattern(/^[a-zA-Z0-9]*$/)]
+      type: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
+      description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(250), Validators.pattern(/^[a-zA-Z0-9]*$/)]]
     });
   }
 
