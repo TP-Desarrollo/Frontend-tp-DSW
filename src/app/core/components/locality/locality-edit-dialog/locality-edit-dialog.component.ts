@@ -26,8 +26,8 @@ export class LocalityEditDialogComponent {
     private fb: FormBuilder
   ) {
     this.localityForm = this.fb.group({
-      name: ['', Validators.required],
-      province: ['', Validators.required]
+      name: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]*$/)],
+      province: ['', Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]*$/)]
     });
   }
 

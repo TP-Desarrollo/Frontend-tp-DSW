@@ -4,25 +4,28 @@
     <mat-form-field>
       <mat-label>DNI</mat-label>
       <input matInput formControlName="dni" required>
-      <mat-error *ngIf="customerForm.get('dni')?.hasError('required')">
-        DNI is required
-      </mat-error>
+      <mat-error *ngIf="customerForm.get('dni')?.hasError('required')">DNI is required</mat-error>
+      <mat-error *ngIf="customerForm.get('dni')?.hasError('minlength')">DNI must be at least 7 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('dni')?.hasError('maxlength')">DNI cannot be more than 8 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('dni')?.hasError('pattern')">DNI can only contain numbers</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>First Name</mat-label>
       <input matInput formControlName="firstName" required>
-      <mat-error *ngIf="customerForm.get('firstName')?.hasError('required')">
-        First Name is required
-      </mat-error>
+      <mat-error *ngIf="customerForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+      <mat-error *ngIf="customerForm.get('firstName')?.hasError('minlength')">First Name must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('firstName')?.hasError('maxlength')">First Name cannot be more than 50 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('firstName')?.hasError('pattern')">First Name can only contain letters and spaces</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Last Name</mat-label>
       <input matInput formControlName="lastName" required>
-      <mat-error *ngIf="customerForm.get('lastName')?.hasError('required')">
-        Last Name is required
-      </mat-error>
+      <mat-error *ngIf="customerForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+      <mat-error *ngIf="customerForm.get('lastName')?.hasError('minlength')">Last Name must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('lastName')?.hasError('maxlength')">Last Name cannot be more than 50 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('lastName')?.hasError('pattern')">Last Name can only contain letters and spaces</mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -30,22 +33,26 @@
       <input matInput formControlName="email" required>
       <mat-error *ngIf="customerForm.get('email')?.hasError('required')">Email is required</mat-error>
       <mat-error *ngIf="customerForm.get('email')?.hasError('email')">Invalid email format</mat-error>
+      <mat-error *ngIf="customerForm.get('email')?.hasError('minlength')">Email must be at least 10 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('email')?.hasError('maxlength')">Email cannot be more than 50 characters long</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Address</mat-label>
       <input matInput formControlName="address" required>
-      <mat-error *ngIf="customerForm.get('address')?.hasError('required')">
-        Address is required
-      </mat-error>
+      <mat-error *ngIf="customerForm.get('address')?.hasError('required')">Address is required</mat-error>
+      <mat-error *ngIf="customerForm.get('address')?.hasError('minlength')">Address must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('address')?.hasError('maxlength')">Address cannot be more than 50 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('address')?.hasError('pattern')">Address can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Phone</mat-label>
       <input matInput formControlName="phone" required>
-      <mat-error *ngIf="customerForm.get('phone')?.hasError('required')">
-        Phone is required
-      </mat-error>
+      <mat-error *ngIf="customerForm.get('phone')?.hasError('required')">Phone is required</mat-error>
+      <mat-error *ngIf="customerForm.get('phone')?.hasError('minlength')">Phone must be at least 9 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('phone')?.hasError('maxlength')">Phone cannot be more than 25 characters long</mat-error>
+      <mat-error *ngIf="customerForm.get('phone')?.hasError('pattern')">Phone can only contain numbers</mat-error>
     </mat-form-field>
 
     <mat-form-field>

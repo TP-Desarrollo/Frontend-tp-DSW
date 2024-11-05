@@ -4,16 +4,18 @@
     <mat-form-field>
       <mat-label>Type</mat-label>
       <input matInput formControlName="type" required>
-      <mat-error *ngIf="vehicleTypeForm.get('type')?.hasError('required')">
-        Type is required
-      </mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('type')?.hasError('required')">Type is required</mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('type')?.hasError('minlength')">Type must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('type')?.hasError('maxlength')">Type be more than 50 characters long</mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('type')?.hasError('pattern')">Type can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Description</mat-label>
       <input matInput formControlName="description" required>
-      <mat-error *ngIf="vehicleTypeForm.get('description')?.hasError('required')">
-        Description is required
-      </mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('description')?.hasError('required')">Description is required</mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('description')?.hasError('minlength')">Description must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('description')?.hasError('maxlength')">Description be more than 250 characters long</mat-error>
+      <mat-error *ngIf="vehicleTypeForm.get('description')?.hasError('pattern')">Description can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions>

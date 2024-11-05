@@ -4,33 +4,34 @@
     <mat-form-field>
       <mat-label>License Plate</mat-label>
       <input matInput formControlName="licensePlate" required>
-      <mat-error *ngIf="vehicleForm.get('licensePlate')?.hasError('required')">
-        License Plate is required
-      </mat-error>
+      <mat-error *ngIf="vehicleForm.get('licensePlate')?.hasError('required')">License Plate is required</mat-error>
+      <mat-error *ngIf="vehicleForm.get('licensePlate')?.hasError('minlength')">License Plate must be at least 6 characters long</mat-error>
+      <mat-error *ngIf="vehicleForm.get('licensePlate')?.hasError('maxlength')">License Plate be more than 7 characters long</mat-error>
+      <mat-error *ngIf="vehicleForm.get('licensePlate')?.hasError('pattern')">License Plate can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
   
     <mat-form-field>
       <mat-label>Brand</mat-label>
       <input matInput formControlName="brand" required>
-      <mat-error *ngIf="vehicleForm.get('brand')?.hasError('required')">
-        Brand is required
-      </mat-error>
+      <mat-error *ngIf="vehicleForm.get('brand')?.hasError('required')">Brand is required</mat-error>
+      <mat-error *ngIf="vehicleForm.get('brand')?.hasError('minlength')">Brand must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="vehicleForm.get('brand')?.hasError('maxlength')">Brand be more than 50 characters long</mat-error>
+      <mat-error *ngIf="vehicleForm.get('brand')?.hasError('pattern')">Brand can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
   
     <mat-form-field>
       <mat-label>Model</mat-label>
       <input matInput formControlName="model" required>
-      <mat-error *ngIf="vehicleForm.get('model')?.hasError('required')">
-        Model is required
-      </mat-error>
+      <mat-error *ngIf="vehicleForm.get('model')?.hasError('required')">Model is required</mat-error>
+      <mat-error *ngIf="vehicleForm.get('model')?.hasError('minlength')">Model must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="vehicleForm.get('model')?.hasError('maxlength')">Model be more than 50 characters long</mat-error>
+      <mat-error *ngIf="vehicleForm.get('model')?.hasError('pattern')">Model can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
   
     <mat-form-field>
       <mat-label>Status</mat-label>
       <input matInput formControlName="status" required>
-      <mat-error *ngIf="vehicleForm.get('status')?.hasError('required')">
-        Status is required
-      </mat-error>
+      <mat-error *ngIf="vehicleForm.get('status')?.hasError('required')">Status is required</mat-error>
     </mat-form-field>
   
     <mat-form-field>

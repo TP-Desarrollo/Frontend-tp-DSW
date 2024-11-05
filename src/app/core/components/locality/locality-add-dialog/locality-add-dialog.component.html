@@ -5,17 +5,19 @@
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" required>
-      <mat-error *ngIf="localityForm.get('name')?.invalid && localityForm.get('name')?.touched">
-        Name is required
-      </mat-error>
+      <mat-error *ngIf="localityForm.get('name')?.invalid && localityForm.get('name')?.touched">Name is required</mat-error>
+      <mat-error *ngIf="localityForm.get('name')?.hasError('minlength')">Locality name must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="localityForm.get('name')?.hasError('maxlength')">Locality name be more than 50 characters long</mat-error>
+      <mat-error *ngIf="localityForm.get('name')?.hasError('pattern')">Locality name can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Province</mat-label>
       <input matInput formControlName="province" required>
-      <mat-error *ngIf="localityForm.get('province')?.invalid && localityForm.get('province')?.touched">
-        Province is required
-      </mat-error>
+      <mat-error *ngIf="localityForm.get('province')?.invalid && localityForm.get('province')?.touched">Province is required</mat-error>
+      <mat-error *ngIf="localityForm.get('province')?.hasError('minlength')">Locality province must be at least 3 characters long</mat-error>
+      <mat-error *ngIf="localityForm.get('province')?.hasError('maxlength')">Locality province be more than 50 characters long</mat-error>
+      <mat-error *ngIf="localityForm.get('province')?.hasError('pattern')">Locality province can only contain letters, numbers, and spaces</mat-error>
     </mat-form-field>
   </div>
 
