@@ -33,7 +33,7 @@ export class VehicleEditDialogComponent implements OnInit {
   ) {
     this.vehicleForm = this.fb.group({
       licensePlate: [data.vehicle.licensePlate, [Validators.required, Validators.minLength(6), Validators.maxLength(7), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
-      brand: [data.vehicle.brand, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      brand: [data.vehicle.brand, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9\s]*$/)]],
       model: [data.vehicle.model, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(/^[a-zA-Z0-9]*$/)]],
       status: [data.vehicle.status, Validators.required], // On review
       vehicleType: [data.vehicle.vehicleType.id, Validators.required], // On review
@@ -74,11 +74,21 @@ export class VehicleEditDialogComponent implements OnInit {
       if (this.selectedFile) {
         formData.append('imageUrl', this.selectedFile, this.selectedFile.name);
       }
+      
+      console.log(this.vehicleForm.value.vehicleType)
 
       this.vehicleService.updateVehicle(this.data.vehicle.id, formData).subscribe({
         next: (response: ApiResponse) => {
-          this.dialogRef.close(response.data);
-        },
+        // Get the vehicle type object from the vehicleTypeService using the selected ID
+        this.vehicleTypeService.getVehicleType(this.vehicleForm.value.vehicleType).subscribe({
+          next: (vehicleTypeResponse: ApiResponse) => {
+            // Assign the vehicle type object to the vehicle
+            this.data.vehicle.vehicleType = vehicleTypeResponse.data;
+            this.dialogRef.close(this.data.vehicle);
+          },
+          error: (error) => console.error('Error fetching vehicle type:', error)
+        });
+      },
         error: (error) => console.error('Error updating vehicle:', error)
       });
     }

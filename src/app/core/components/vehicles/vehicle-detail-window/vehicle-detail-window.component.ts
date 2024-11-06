@@ -18,7 +18,9 @@ export class VehicleDetailWindowComponent {
   constructor(
     public dialogRef: MatDialogRef<VehicleDetailWindowComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { vehicle: Vehicle }
-  ) {}
+  ) {
+    console.log(this.data.vehicle.vehicleType)
+  }
 
   getStatusClass(status: string): string {
   // Convert the status to lowercase and replace spaces/underscores with hyphens
