@@ -23,6 +23,10 @@ export class VehicleTypeService {
     return this._refreshNeeded$;
   }
 
+  getVehicleType(id: number): Observable<ApiResponse> {
+    return this.httpClient.get<ApiResponse>(`${this.apiUrl}/vehicle-types/${id}`);
+  }
+
   getVehicleTypes(): Observable<ApiResponse> {
     return this.httpClient.get<ApiResponse>(`${this.apiUrl}/vehicle-types`)
   }
